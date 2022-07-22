@@ -1,0 +1,24 @@
+CREATE TABLE bookstore 
+(id INTEGER PRIMARY KEY, item TEXT, section INTEGER, price INTEGER, popularity INTEGER);
+
+INSERT INTO bookstore VALUES
+(1, "Fiction General", "1", "$30", "1"), 
+(2, "NonFiction General", "3", "$25", "3"),
+(3, "Journals", "2", "$12", "2"),
+(4, "Cookbooks", "3", "$20", "4"),
+(5, "Candles", "2", "$12", "2"),
+(6, "Childrens books", "4", "$10", "1"),
+(7, "Young Adult Fiction", "1", "$30", "1");
+
+--displaying the database ordered by price. 
+SELECT * FROM bookstore
+ORDER BY price desc; 
+
+--what are the prices of items in section 3? 
+SELECT (price) "section 3 prices" FROM bookstore where section='3'; 
+
+--what are the most 5 popular items? 
+SELECT item, price, popularity
+FROM bookstore
+ORDER BY popularity asc
+limit 5; 
