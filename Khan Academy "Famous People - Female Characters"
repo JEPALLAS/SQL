@@ -1,0 +1,58 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE characters (id INTEGER PRIMARY KEY, source_type_id INTEGER, source_name_id INTEGER, source_author_id INTEGER, name TEXT);
+
+INSERT into characters VALUES (1, 1, 1, 1, "Aelin Galathynius");
+INSERT into characters VALUES (2, 1, 1, 1, "Manon Blackbeak");
+INSERT into characters VALUES (3, 1, 2, 2, "Penelope Featherington");
+INSERT into characters VALUES (4, 2, 3, 6, "Ciri");
+INSERT into characters VALUES (5, 3, 4, 4,"Leia Organa"); 
+INSERT into characters VALUES (6, 2, 3, 3, "Yennifer");
+INSERT into characters VALUES (7, 3, 4, 4, "Rose Tico");
+INSERT into characters VALUES (9, 3, 5, 5, "Sarah Williams"); 
+INSERT into characters VALUES (10, 1, 1, 1, "Elide Lochan"); 
+
+CREATE TABLE source_type (id INTEGER PRIMARY KEY, source TEXT);
+INSERT into source_type VALUES (1,"Book");
+INSERT into source_type VALUES (2,"Video game");
+INSERT into source_type VALUES (3,"Movie"); 
+
+CREATE TABLE source_name (id INTEGER PRIMARY KEY,  name TEXT);
+
+INSERT INTO source_name VALUES (1,"Throne of Glass");
+INSERT INTO source_name VALUES (2,"Bridgerton");
+INSERT INTO source_name VALUES (3,"Witcher"); 
+INSERT INTO source_name VALUES (4,"Star Wars"); 
+INSERT INTO source_name VALUES (5, "Labyrinth");
+
+CREATE TABLE source_author (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO source_author VALUES (1, "Maas"); 
+INSERT INTO source_author VALUES (2, "Quinn");
+INSERT INTO source_author VALUES (3, "Sapkowski");
+INSERT INTO source_author VALUES (4, "Lucas");
+INSERT INTO source_author VALUES (5, "Henson");
+
+SELECT c.name, st.source as "Source Type", sn.name as "Source name", sa.name as "Author"
+    FROM characters c
+    JOIN source_type st
+    ON c.source_type_id = st.id
+    JOIN source_name sn
+    ON c.source_name_id = sn.id
+    JOIN source_author sa
+    ON c.source_author_id = sa.id
+    ORDER BY source;
+    
+SELECT c.name, st.source as "Source Type", sa.name as "Author"
+FROM characters c
+JOIN source_type st
+ON c.source_type_id = st.id
+JOIN source_author sa
+ON c.source_author_id = sa.id
+ORDER BY Author;
+
+SELECT st.source as "Medium", sa.name as "Author", sn.name as "Series"
+FROM source_type st
+JOIN source_author sa
+ON st.id = sa.id
+JOIN source_name sn
+ON st.id = sn.id;
