@@ -1,0 +1,33 @@
+/* What does the app's SQL look like? */
+
+CREATE TABLE game_users (id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    high_score INTEGER,
+    hours_played INTEGER,
+    favorite_day TEXT);
+
+INSERT INTO game_users VALUES (1,"Hannah", "hannahbannana@gmail.com", 450, 15, "Saturday");
+INSERT INTO game_users VALUES (2, "Josh", "obelisk@yahoo.com", 25000, 35, "Thursday");
+INSERT INTO game_users VALUES (3, "Alice", "trucrime@yahoo.com", 9080, 18, "Saturday");
+INSERT INTO game_users VALUES (4, "Matt", "rollercoster@gmail.com", 320, 10, "Friday");
+INSERT INTO game_users VALUES (5, "Sam", "bookgal@yahoo.com", 980, 14, "Thursday");
+
+SELECT * FROM game_users;
+
+ALTER TABLE game_users ADD COLUMN age TEXT default "unknown";
+
+SELECT * FROM game_users;
+
+UPDATE game_users SET age = 25 WHERE id = 4;
+UPDATE game_users SET age = 20 WHERE id = 1;
+UPDATE game_users SET age = 30 WHERE id = 3;
+UPDATE game_users SET age = 18 WHERE id = 2;
+UPDATE game_users SET age = 22 WHERE id = 5;
+
+SELECT * FROM game_users;
+
+DELETE FROM game_users WHERE high_score <=500;
+
+SELECT * FROM game_users
+ORDER BY hours_played desc;
